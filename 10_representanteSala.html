@@ -1,0 +1,36 @@
+<meta charset="UTF-8">
+<script>
+    /*
+    PROBLEMA
+    Peça para o programa perguntar ao professor regente o nome dos três candidados a representante da sala.
+    Peça também para o programa perguntar ao professor regente a quantidade de alunos votantes.
+    Desenvolva um programa que armazene o voto de cada aluno da sala e apresente o resultado da votação, com o quantitativo de votos e também a porcentagem de votos de cada candidato a representante de sala.
+    */
+
+    //ENTRADA
+    let candidatos = [prompt("Qual o 1 ° candidato? "), prompt("Qual o 2 ° candidato?"), prompt("Qual o 3° candidato? ")];
+    let av = parseInt(prompt("Quantos alunos vao votar?"));
+    let cdv = [[], [], []];
+    let eleito = "Empate"
+    let voto = null
+    //PROCESSAMENTO
+    for (i = 1; i <= av; i++) {
+        voto = Number(prompt(`Os cantidatos sao: ${candidatos.join(" - ")}\nEm qual canditado voce deseja votar?\n\n${candidatos[0]} - Digite 1\n${candidatos[1]} - Digite 2\n${candidatos[2]} - Digite 3`));
+        (voto === 1) ? cdv[0].push(voto) :
+            (voto === 2) ? cdv[1].push(voto) :
+                (voto === 3) ? cdv[2].push(voto) : alert("Voto inválido ");
+    };
+
+    (cdv[0].length > cdv[1].length && cdv[0].length > cdv[2].length) ? eleito = candidatos[0] :
+        (cdv[1].length > cdv[0].length && cdv[1].length > cdv[2].length) ? eleito = candidatos[1] :
+            (cdv[2].length > cdv[1].length && cdv[2].length > cdv[0].length) ? eleito = candidatos[2] :
+                (cdv[0].length === cdv[1].length && cdv[0].length > cdv[2].length) ? alert(`Empate entre ${candidatos[0]} e ${candidatos[1]}`) :
+                    (cdv[1].length === cdv[2].length && cdv[1].length > cdv[0].length) ? alert(`Empate entre ${candidatos[1]} e ${candidatos[2]}`) :
+                        (cdv[2].length === cdv[0].length && cdv[2].length > cdv[1].length) ? alert(`Empate entre ${candidatos[2]} e ${candidatos[0]}`) : alert(`Empate entre os três candidatos`);
+
+    let pc1 = ((cdv[0].length * 100) / av);
+    let pc2 = ((cdv[1].length * 100) / av);
+    let pc3 = ((cdv[2].length * 100) / av);
+    //SAÍDA
+    document.write(`O candidato eleito foi: <b>${eleito}</b> <br>O candidato: ${candidatos[0]} teve um total de: ${cdv[0].length} votos, equivalente a ${pc1}%<br>O candidato: ${candidatos[1]} teve um total de: ${cdv[1].length} votos, equivalente a ${pc2}%<br>O candidato: ${candidatos[2]} teve um total de: ${cdv[2].length} votos, equivalente a ${pc3}%`);
+</script>
